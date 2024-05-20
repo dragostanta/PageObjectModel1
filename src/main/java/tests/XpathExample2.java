@@ -52,8 +52,35 @@ public class XpathExample2 extends BaseTest{
 		
 		
 		//following -sibling
-		//following
+		WebElement rememberMe = driver.findElement
+				(By.xpath("//ul//div[contains(@class, 'login_field')]/following-sibling::div[contains(@class, 'remember_field')]/input"));
+		
+		jse.executeScript("arguments[0].setAttribute"
+				+ "('style', 'background: yellow;border:6px solid green;')", rememberMe);
+		
+		Thread.sleep(2000);
+		rememberMe.click();
+		
+		//preceding-sibling
+		WebElement user2 = driver.findElement
+				(By.xpath("//ul//div[contains(@class, 'submit_field')]/preceding-sibling::div[contains(@class, 'login_field')]"));
+		
+		
+		jse.executeScript("arguments[0].setAttribute"
+				+ "('style', 'background: pink ;border:6px solid red;')", user2);
+	
+		//following	
+		WebElement forgotLink = driver.findElement
+				(By.xpath("//a[@href='tel:123-456-7890']/following::a[@class='forgot_password']"));
+		
+		jse.executeScript("arguments[0].setAttribute"
+				+ "('style', 'background: pink ;border:6px solid red;')", forgotLink);
+		
 		//preceding
+		WebElement  submitButton = driver.findElement
+				(By.xpath("//div[@class='top_panel_middle']/preceding::input[@value='Login']"));
+		
+		submitButton.click();
 		
 	}
 	
