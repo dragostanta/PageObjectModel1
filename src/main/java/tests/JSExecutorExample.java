@@ -40,7 +40,7 @@ public class JSExecutorExample  extends BaseTest {
 	}
 
 	
-	@Test
+	//@Test
 	public void example2() {
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 
@@ -70,8 +70,71 @@ public class JSExecutorExample  extends BaseTest {
 				+ "document.getElementsByClassName('icon-search')[0].click();");
 	*/
 	
+		//alternativa pentru getText()
+		String bookTitle = jse.executeScript
+					("return document.getElementsByClassName('post_title')[0].childNodes[0].innerText")
+					.toString();
+		
+		System.out.println(bookTitle);
+		
+		//alternativa pentru isDisplayed()
+		
+		boolean titleVisibile = (boolean) jse.executeScript
+				("return document.getElementsByClassName('post_title')[0].childNodes[0].checkVisibility()");
+		System.out.println(titleVisibile);
 		
 		
+		String titleVisibileString = jse.executeScript
+				("return document.getElementsByClassName('post_title')[0].childNodes[0].checkVisibility()")
+				.toString();
+		System.out.println(titleVisibileString);
+		
+		//alternativa pentru getTitle()
+		String pageTitle = jse.executeScript("return document.title").toString();
+		System.out.println(pageTitle);
+		System.out.println(driver.getTitle());
+		
+		//alternativa pentru getCurrentURL()
+		String pageURl = jse.executeScript("return document.URL").toString();
+		System.out.println(pageURl);
+		System.out.println(driver.getCurrentUrl());
+		
+		
+		jse.executeScript("document.getElementsByClassName('popup_link')[0].click()");
+		
+		//alternativa pentru isSelected()
+		boolean checkBoxSelected = (boolean) jse.executeScript
+				("return document.getElementById('rememberme').checked ");
+		System.out.println(checkBoxSelected);
+		
+		jse.executeScript
+		("return document.getElementById('rememberme').click() ");
+		
+		boolean checkBoxSelectedAfterClick = (boolean) jse.executeScript
+				("return document.getElementById('rememberme').checked ");
+		System.out.println(checkBoxSelectedAfterClick);
+	
+		
+		//alternativa pentru isEnabled()
+		boolean isPasswordFieldDisabled = (boolean) jse.executeScript
+				("return document.getElementById('password').disabled");
+	
+		System.out.println(isPasswordFieldDisabled);
+		
+	}
+	
+	@Test
+	public void example3() {
+		
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+		System.out.println(driver.getTitle());
+		
+		jse.executeScript("window.altTitlu = function(){ document.title = 'Alt titlu!!'};"
+				+ "window.altTitlu.call()");
+		
+		System.out.println(driver.getTitle());
+
 	}
 	
 	
