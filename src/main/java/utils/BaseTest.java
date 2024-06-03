@@ -42,7 +42,7 @@ public class BaseTest {
 		
 	}
 	
-	//@AfterClass
+	@AfterClass
 	public void tearDown() throws InterruptedException {	
 		Thread.sleep(5000);
 		driver.quit();//inchide toate taburile
